@@ -42,3 +42,59 @@ deck = deck[16:]
 print("Player 1 hand:", player1_hand)
 print("Player 2 hand:", player2_hand)
 print("Remaining deck:", remaining_deck)
+
+# track scores
+player1_score = 0
+player2_score = 0
+
+# simple function to get card value (ignores suits)
+def card_value(card):
+    rank = card[:-1] 
+    if rank == 'J':
+        return 11
+    elif rank == 'Q':
+        return 12
+    elif rank == 'A':
+        return 14
+    else:
+        return int(rank)
+
+# function to play a round
+def play_round(p1_hand, p2_hand, leader):
+    print("\n--- New Round ---")
+
+    # leader chooses card first
+    if leader == 1:
+        p1_card = p1_hand.pop(0)
+        p2_card = p2_hand.pop(0)
+    else:
+        p2_card = p2_hand.pop(0)
+        p1_card = p1_hand.pop(0)
+
+    print(f"Player 1 plays {p1_card}")
+    print(f"Player 2 plays {p2_card}")
+
+    # compare values
+    if card_value(p1_card) > card_value(p2_card):
+        print("Player 1 wins the round!")
+        return 1
+    elif card_value(p2_card) > card_value(p1_card):
+        print("Player 2 wins the round!")
+        return 2
+    else:
+        print("It's a tie!")
+        return 0  # tie
+
+# example of playing 1 round (player 1 starts)
+leader = 1
+winner = play_round(player1_hand, player2_hand, leader)
+
+# update score
+if winner == 1:
+    player1_score += 1
+    leader = 1
+elif winner == 2:
+    player2_score += 1
+    leader = 2
+
+print(f"Scores -> Player 1: {player1_score} | Player 2: {player2_score}")
