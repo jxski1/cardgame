@@ -13,8 +13,8 @@
 # The game ends after 16 rounds (16 points max), OR early if someone hits 9 points and the other player has at least 1 point (because the other person can’t catch up).
 # Special rule: If someone wins 16-0, they “shoot the moon” and instantly win with 17 points.
 
-
 import random
+import time
 
 # deck of cards (without kings)
 deck = [
@@ -39,9 +39,17 @@ player1 = deck[:8]
 player2 = deck[8:16]
 deck = deck[16:]
 
-print("Player 1 hand:", player1_hand)
-print("Player 2 hand:", player2_hand)
-print("Remaining deck:", remaining_deck)
+print("Player 1 hand:", player1)
+print("Player 2 hand:", player2)
+print("Remaining deck:", deck)
+
+print("\nStarting Tricksy Battle in...")
+time.sleep(1)
+print("3...")
+time.sleep(1)
+print("2...")
+time.sleep(1)
+print("1... Go!\n")
 
 # track scores
 player1_score = 0
@@ -87,7 +95,7 @@ def play_round(p1_hand, p2_hand, leader):
 
 # example of playing 1 round (player 1 starts)
 leader = 1
-winner = play_round(player1_hand, player2_hand, leader)
+winner = play_round(player1, player2, leader)
 
 # update score
 if winner == 1:
@@ -98,3 +106,39 @@ elif winner == 2:
     leader = 2
 
 print(f"Scores -> Player 1: {player1_score} | Player 2: {player2_score}")
+
+# play full game (8 rounds)
+for round_num in range(16):
+    # flip a card from remaining deck
+    if len(deck) > 0:
+        flipped_card = deck.pop(0)
+        print(f"\nFlipped card from deck: {flipped_card}")
+    else:
+        print("\nNo more cards to flip.")
+
+    # play round
+round_start = time.time()
+winner = play_round(player1, player2, leader)
+round_end = time.time()
+duration = round_end - round_start
+print(f"⏲️ Round took {round(duration, 2)} seconds.")
+
+    # update scores and leader
+if winner == 1:
+    player1_score += 1
+    leader = 1
+elif winner == 2:
+    player2_score += 1
+    leader = 2
+    # no change of leader on tie
+
+    print(f"Scores -> Player 1: {player1_score} | Player 2: {player2_score}")
+
+# final results
+print("\n--- Game Over ---")
+if player1_score > player2_score:
+    print("Player 1 wins the game!")
+elif player2_score > player1_score:
+    print("Player 2 wins the game!")
+else:
+    print("The game is a tie!")
