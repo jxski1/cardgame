@@ -1,9 +1,5 @@
 # cardgame
-# cardgame
-# cardgame
 
-
-"""
 README - Tricksy Battle
 
 By: Jaskirat Singh
@@ -24,10 +20,3 @@ How to run:
 - Run it in terminal with: python tricksy_battle.py
 - The game plays automatically and prints what happens.
 - You could also use vscode terminal and smart send to slowly display what is happening
-
-Notes:
-- This version only plays 8 rounds.
-- Some rules (like getting more cards and early win) are not in the code yet.
-
-Have fun!
-"""
