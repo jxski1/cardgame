@@ -43,6 +43,27 @@ print("Player 1 hand:", player1)
 print("Player 2 hand:", player2)
 print("Remaining deck:", deck)
 
+
+# ~~~~~~~~~~~~ START OF SUGGESTION ~~~~~~~~~~~~ #
+# - concept: Changed countdown logic into a 'countdown()' function for easier callback
+
+# - I like the countdown concept a lot, however, you could make this more efficient
+# - while also practicing better "coding principle" by doing this instead
+
+
+# - adds a countdown before the game begins for added immersion and realism in gameplay loop
+# def countdown():
+    # print("\nStarting Tricksy Battle in...")
+    # for num in ["3...", "2...", "1... Go!\n"]
+        # print(num)
+        # time.sleep(1.0)
+
+# - from there you can call the function as such:
+# ~~~~~~~~~~ countdown()
+
+
+# ~~~~~~~~~~~~ END OF SUGGESTION ~~~~~~~~~~~~ #
+
 print("\nStarting Tricksy Battle in...")
 time.sleep(1)
 print("3...")
